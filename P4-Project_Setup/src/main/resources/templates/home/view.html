@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+
+<div class="card-header">
+    <nav th:insert = "fragments :: nav"></nav>
+        <h1 class= "float-left" th:text="${#strings.capitalizeWords(currentdate)}"></h1>
+        <h1 class= "text-center" th:text="${#strings.capitalizeWords(title1)}"></h1>
+</div>
+</br>
+<body class="container">
+<table class="table table-striped" style="width:45%;display:inline-block">
+    <thead>
+    <tr><th>Todays Events</th><th></th></tr>
+    <tr>
+        <th>Who</th>
+        <th>Event</th>
+    </tr>
+    </thead>
+    <tr th:each="event : ${events}">
+        <td th:text="${event.eventDetails.name}"></td>
+        <td><a th:href="'/events/displayEvent/?eventId='+ ${event.id}" th:text="${event.name}"></a></td>
+    </tr>
+</table>
+
+<table class="table table-striped" style="width:45%;display:inline-block">
+    <thead>
+    <tr><th>To Do List</th><th></th><th></th></tr>
+    <tr>
+        <th>Who</th>
+        <th>To-Do List</th>
+        <th>Start Date</th>
+        <th></th>
+        <th>End Date</th>
+        <th></th>
+    </tr>
+    </thead>
+    <tr th:each="todolist : ${todolist}">
+        <td th:text="${todolist.member}"></td>
+        <td th:text="${todolist.name}"></td>
+        <td th:text="${todolist.start}"></td>
+        <td th:text="${todolist.starttime}"></td>
+        <td th:text="${todolist.enddate}"></td>
+        <td th:text="${todolist.endtime}"></td>
+    </tr>
+</table>
+
+
+</body>
+</html>
